@@ -1,12 +1,11 @@
 import { ReactNode } from "react";
 
-const Layout = ({children}:{children:ReactNode}) => {
+const AuthLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
-        Auth Layout
-        {children}
+    <div className="flex min-h-screen items-center justify-center bg-background">
+      {children}
     </div>
   );
 };
 
-export default Layout;
+export default AuthLayout;
