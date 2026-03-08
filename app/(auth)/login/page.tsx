@@ -5,9 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-
+import { X } from "lucide-react";
+import { useRef, useState } from "react";
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const emailRef = useRef<HTMLInputElement>(null);
+
   return (
     <div className="w-full max-w-100 px-4">
       <div className="flex flex-col items-center space-y-6">
@@ -16,7 +20,9 @@ const LoginPage = () => {
           <div className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-xl font-bold">
             M
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">Welcome to Minflo</h1>
+          <h1 className="text-2xl font-bold tracking-tight">
+            Welcome to Minflo
+          </h1>
           <p className="text-muted-foreground">Log in to your account</p>
         </div>
 
@@ -40,7 +46,9 @@ const LoginPage = () => {
         {/* Divider */}
         <div className="flex w-full items-center gap-2">
           <Separator className="flex-1" />
-          <span className="text-xs text-muted-foreground">or continue with</span>
+          <span className="text-xs text-muted-foreground">
+            or continue with
+          </span>
           <Separator className="flex-1" />
         </div>
 
@@ -48,18 +56,40 @@ const LoginPage = () => {
         <div className="w-full space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              className="h-11 text-xl  "
-              placeholder="Enter your email address..."
-            />
+            <div className="relative">
+              <Input
+                ref={emailRef}
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="h-11 text-xl pr-10"
+                placeholder="Enter your email address..."
+              />
+              {email.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEmail("");
+                    emailRef.current?.focus();
+                  }}
+                  className="absolute p-0.75 right-2.5 top-1/2 -translate-y-1/2 bg-[hsl(36,6%,66%)]  text-white  rounded-full hover:ring-4 hover:ring-gray-200 "
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              )}
+            </div>
             <p className="text-xs text-muted-foreground">
               Use an organization email to easily collaborate with teammates
             </p>
           </div>
 
-          <Button variant={"action"} className="w-full h-11 text-sm font-medium  text-white">Continue</Button>
+          <Button
+            variant={"action"}
+            className="w-full h-11 text-sm font-medium  text-white"
+          >
+            Continue
+          </Button>
         </div>
 
         {/* Footer */}
