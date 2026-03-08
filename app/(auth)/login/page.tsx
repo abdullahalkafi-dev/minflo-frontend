@@ -51,6 +51,7 @@ const LoginPage = () => {
             <Input
               id="email"
               type="email"
+              className="h-11 text-xl  "
               placeholder="Enter your email address..."
             />
             <p className="text-xs text-muted-foreground">
@@ -58,7 +59,7 @@ const LoginPage = () => {
             </p>
           </div>
 
-          <Button className="w-full h-11 text-sm font-medium">Continue</Button>
+          <Button variant={"action"} className="w-full h-11 text-sm font-medium  text-white">Continue</Button>
         </div>
 
         {/* Footer */}
